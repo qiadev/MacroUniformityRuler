@@ -9,10 +9,13 @@
 #include "w11ImageText.h"
 #include "w11Utilities.h"
 
+#if _SUPPORT_FREETYPE_
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#endif
 
 using namespace std;
+
 
 
 w11ImageText::w11ImageText(std::string fontDirectory, std::string fontName)
@@ -48,6 +51,8 @@ void w11ImageText::setText(std::string t)
 
 void w11ImageText::addTextAt(w11ImageChannelT<w11T8Bits>& image, double xmm, double ymm)
 {
+#if _SUPPORT_FREETYPE_
+
 	FT_Library    library;
 	FT_Face       face;
 	
@@ -114,11 +119,13 @@ void w11ImageText::addTextAt(w11ImageChannelT<w11T8Bits>& image, double xmm, dou
 	
 	FT_Done_Face(face);
 	FT_Done_FreeType(library);
+#endif
 }
 
 
 void w11ImageText::draw_bitmap(w11ImageChannelT<w11T8Bits>& image, FT_Bitmap* bitmap, long x,long y)
 {
+#if _SUPPORT_FREETYPE_
 	FT_Int  i, j, p, q;
 	FT_Int  x_max = x + bitmap->width;
 	FT_Int  y_max = y + bitmap->rows;
@@ -143,5 +150,7 @@ void w11ImageText::draw_bitmap(w11ImageChannelT<w11T8Bits>& image, FT_Bitmap* bi
 			}
 		}
 	}
+
+#endif
 }
 

@@ -10,4 +10,13 @@
 #define w11BuildConfiguration_h
 
 
+
+
+#define _SUPPORT_FREETYPE_      0       // without this image will not be annotated.
+
+
+
+
+
+
 #endif /* w11BuildConfiguration_h */

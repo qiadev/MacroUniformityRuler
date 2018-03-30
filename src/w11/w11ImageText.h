@@ -15,7 +15,13 @@
 
 #include <string>
 
+#if _SUPPORT_FREETYPE_
 struct FT_Bitmap_;
+#else
+typedef void* FT_Bitmap;
+typedef void* FT_Bitmap_;
+#endif
+
 
 class w11ImageText {
 private:
