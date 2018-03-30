@@ -9,7 +9,7 @@
 #include "w11macro_main.h"
 #include "w11Build.h"
 #include "w11Utilities.h"
-#include "w11defects.h"
+#include "w11Defects.h"
 #include "w11MacroScaleSample.h"
 #include "w11CalibrationTP.h"
 #include "w11ImageText.h"

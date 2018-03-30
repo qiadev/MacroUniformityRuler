@@ -6,7 +6,7 @@
 
 #include "w11CalibrationTP.h"
 #include "w11Utilities.h"
-#include "w11defects.h"
+#include "w11Defects.h"
 
 w11TestPattern::w11TestPattern(void)
 {

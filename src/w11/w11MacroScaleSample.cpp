@@ -1,5 +1,5 @@
 #include "w11MacroScaleSample.h"
-#include "w11defects.h"
+#include "w11Defects.h"
 #include "w11Utilities.h"
 
 #include <iostream>

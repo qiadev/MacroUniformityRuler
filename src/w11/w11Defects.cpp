@@ -1,4 +1,4 @@
-#include "w11defects.h"
+#include "w11Defects.h"
 #include "w11fft.h"
 
 #include <iostream>
