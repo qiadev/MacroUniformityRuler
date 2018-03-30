@@ -1,0 +1,15 @@
+UUID:2010-01-07
+IMAGE:not_used
+TIME:2010.01.07.01.01.01
+EXMID:calibration
+STATUS:0
+INPUTS:2
+SS::Directory::C:\w11macro
+SA::CIELabFiles::5
+ref__113405.it8
+ref__114010.it8
+ref__114733.it8
+ref__122122.it8
+ref__130445.it8
+OUTPUTS:0
+END
