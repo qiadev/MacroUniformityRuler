@@ -794,7 +794,7 @@ BSpline<T>::solve (const T *y)
 
 	for (m = my::max(0,mx-1); m <= my::min(mx+2,M); ++m)
 	{
-	    B[m] += yj * Basis (m, xj);
+	    B[m] += yj * this->Basis (m, xj);
 	}
     }
 
@@ -854,7 +854,7 @@ T BSpline<T>::evaluate (T x)
 	int n = (int)((x - xmin)/DX);
 	for (int i = my::max(0,n-1); i <= my::min(M,n+2); ++i)
 	{
-	    y += s->A[i] * Basis (i, x);
+	    y += s->A[i] * this->Basis (i, x);
 	}
 	y += mean;
     }
@@ -872,7 +872,7 @@ T BSpline<T>::slope (T x)
 	int n = (int)((x - xmin)/DX);
 	for (int i = my::max(0,n-1); i <= my::min(M,n+2); ++i)
 	{
-	    dy += s->A[i] * DBasis (i, x);
+        dy += s->A[i] * this->DBasis (i, x);    // DRR: Must qualify with this->. Clang C++ is strict. See <http://blog.llvm.org/2009/12/dreaded-two-phase-name-lookup.html>
 	}
     }
     return dy;
