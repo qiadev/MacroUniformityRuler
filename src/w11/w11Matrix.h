@@ -18,13 +18,13 @@
 template <typename T>
 class w11Matrix {
 	
-#pragma mark Private data members
+// MARK: -  Private data members
 private:
 	long fnx;		// columns
 	long fny;		// rows
 	T **v;			// values
 	
-#pragma mark Public methods
+// MARK: -  Public methods
 public:
 	w11Matrix(void)
 	{
@@ -210,7 +210,7 @@ public:
 	};
 	
 	
-#pragma mark Private methods
+// MARK: -  Private methods
 private:
 	void freedata(void) {
 		if (v) {

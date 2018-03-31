@@ -96,7 +96,7 @@ float ran0(long *idum)	// random number generator
     return ans;    
 }
 
-#pragma mark w11MacroMask
+// MARK: -  w11MacroMask
 //=========================== w11MacroMask =========================================
 
 w11MacroMask::w11MacroMask(void) 
@@ -112,7 +112,7 @@ double w11MacroMask::mask(double x,double y)
     return 1.0;
 }
 
-#pragma mark w11MaskDiagonalLinear
+// MARK: -  w11MaskDiagonalLinear
 //=========================== w11MaskDiagonalLinear =========================================
 
 w11MaskDiagonalLinear::w11MaskDiagonalLinear(bool upright,double length) :
@@ -133,7 +133,7 @@ double w11MaskDiagonalLinear::mask(double x,double y)
     return fUpright ? dist / fDiagonalLength : 1 - dist / fDiagonalLength;
 }
 
-#pragma mark w11MaskFermi
+// MARK: -  w11MaskFermi
 //=========================== w11MaskFermi =========================================
 
 w11MaskFermi::w11MaskFermi(bool xon,bool xdrop,double xc,double xw,
@@ -165,7 +165,7 @@ double w11MaskFermi::mask(double x,double y)
     return m;
 }
 
-#pragma mark w11MaskFermiRadial
+// MARK: -  w11MaskFermiRadial
 //=========================== w11MaskFermiRadial =========================================
 
 w11MaskFermiRadial::w11MaskFermiRadial(bool invert,
@@ -206,7 +206,7 @@ double w11MaskFermiRadial::mask(double x,double y)
     return m;
 }
 
-#pragma mark w11MacroDefect
+// MARK: -  w11MacroDefect
 //=========================== w11MacroDefect =========================================
 
 w11MacroDefect::w11MacroDefect(double amplitude,unsigned long seed,double dxy) :
@@ -249,7 +249,7 @@ float w11MacroDefect::random(void)
 }
 
 
-#pragma mark w11Banding
+// MARK: -  w11Banding
 
 //=========================== w11Banding =========================================
 
@@ -275,7 +275,7 @@ double w11Banding::dlevel(double x,double y)
     return level;    
 }
 
-#pragma mark w11BandingSweep
+// MARK: -  w11BandingSweep
 
 //=========================== w11BandingSweep =========================================
 
@@ -312,7 +312,7 @@ double w11BandingSweep::dlevel(double x,double y)
     return level;    
 }
 
-#pragma mark w11RandomStreaks
+// MARK: -  w11RandomStreaks
 //=========================== w11RandomStreaks =========================================
 
 w11RandomStreaks::w11RandomStreaks(double amp,unsigned long seed,double dxy,double pmin,double pmax,bool vertical) :
@@ -412,7 +412,7 @@ double w11RandomStreaks::dlevel(double x,double y)
 }
 
 
-#pragma mark w11IsolatedStreaks
+// MARK: -  w11IsolatedStreaks
 //=========================== w11IsolatedStreaks =========================================
 
 
@@ -448,7 +448,7 @@ double w11IsolatedStreaks::dlevel(double x,double y)
 }
 
 
-#pragma mark w11Mottle
+// MARK: -  w11Mottle
 //=========================== w11Mottle =========================================
 w11Mottle::w11Mottle(double amp,unsigned long seed,double dxy,double pmin,double pmax) :
 w11MacroDefect(amp,seed,dxy),
@@ -541,7 +541,7 @@ double w11Mottle::dlevel(double x,double y)
     return level;    
 }
 
-#pragma mark w11MacroScale
+// MARK: -  w11MacroScale
 //=========================== w11MacroScale =========================================
 
 w11MacroScale::w11MacroScale(void)
@@ -814,7 +814,7 @@ w11ImageChannelT<float>* w11MacroScale::makeDefectImage(double meanY, double amp
 }
 
 
-#pragma mark Global functions
+// MARK: -  Global functions
 
 w11T16Bits cvtfloat(float pixelvalue)
 {

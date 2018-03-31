@@ -19,11 +19,11 @@
 
 // P is the pixel type
 template <typename P> class w11ImageChannelT : public w11ImageChannel {
-#pragma mark Private data members	
+// MARK: -  Private data members	
 private:   
 	w11Matrix<P> m;
 
-#pragma mark Public methods	
+// MARK: -  Public methods	
 public:
 	w11ImageChannelT(void)
 	{
