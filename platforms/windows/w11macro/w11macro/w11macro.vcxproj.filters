@@ -95,9 +95,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="w11macro.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\src\w11\w11fft.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -161,5 +158,8 @@
     <ClCompile Include="..\..\..\..\external\bspline-1_3\lib\BSpline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\external\libtiff-3-8-2\lib\libtiff.lib" />
   </ItemGroup>
 </Project>
