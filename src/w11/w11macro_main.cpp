@@ -200,12 +200,15 @@ void scaleOp(float ymean, float amplitude, float noise, const string& label)
 			it.addTextAt(*i8, 18.0, 12.0);
 		}
 	}
-	
-	//i8->writeFile(scalePath);
+
+#ifdef _W11_TIFF_SUPPORT_
 	float xdpi = (float) (25.4 / i8->dx());
 	float ydpi = (float) (25.4 / i8->dy());
 	writeTiff(i8->matrix(), scalePath, xdpi, ydpi, string("W1.1 Macro-uniformity") + label);
-	cout << "Wrote TIFF image <" << scalePath + ">" << endl;
+#else
+    i8->writeFile(scalePath);
+#endif
+	cout << "Wrote image <" << scalePath + ">" << endl;
 	cout << "Dimensions: " << i8->nx() << " by " << i8->ny() << endl;
 }
 
@@ -300,12 +303,15 @@ void calibrationTestPatternOp(void)
 	string calibrationPath= w11Utility::instance().generatedCalibrationDirectory();
 	calibrationPath= w11Utility::appendPathSegment(calibrationPath, ost.str());
 	
-	float xdpi = (float)(25.4 / i8->dx());
-	float ydpi = (float)(25.4 / i8->dy());
+#ifdef _W11_TIFF_SUPPORT_
+    float xdpi = (float)(25.4 / i8->dx());
+    float ydpi = (float)(25.4 / i8->dy());
 	writeTiff(i8->matrix(), calibrationPath + ".tif", xdpi, ydpi, string("W1.1 Macro-uniformity") + __W11_MACRO_VERSION__);
-	cout << "Wrote TIFF image <" << calibrationPath + ".tif" + ">" << endl;
-	
-	//i8->writeFile(calibrationPath);
+#else
+    i8->writeFile(calibrationPath);
+#endif
+    cout << "Wrote image <" << calibrationPath + ">" << endl;
+
 }
 
 void calibrationTestPatternOp2(exmRequest& req)
@@ -424,16 +430,16 @@ void simulationOp(string filename, string label, float mean, float noise,
 		}
 	}
 	
+#ifdef _W11_TIFF_SUPPORT_
 	float xdpi = (float)(25.4 / i8->dx());
 	float ydpi = (float)(25.4 / i8->dy());
 	writeTiff(i8->matrix(), scalePath, xdpi, ydpi, string("W1.1 Macro-uniformity") + label);
-	cout << "Generated simulated image: " << scalePath << endl;
-	cout << "Dimensions: " << i8->nx() << " by " << i8->ny() << endl;
-	
-#ifdef DRR_TP // DRR debug only
-#include "drr_tp_profile.h"
+#else
+    i8->writeFile(scalePath);
 #endif
-	
+    cout << "Generated simulated image: " << scalePath << endl;
+    cout << "Dimensions: " << i8->nx() << " by " << i8->ny() << endl;
+
 }
 
 void simulationOp2(exmRequest& req)

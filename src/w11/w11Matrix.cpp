@@ -7,12 +7,13 @@
  */
 
 #include "w11Matrix.h"
-#include "tiffio.h"
 
 #include <iostream>
 #include <string>
 using namespace std;
 
+#ifdef _W11_SUPPORT_TIFF_
+#include "tiffio.h"
 
 void writeTiff(const w11Matrix<w11T8Bits>& matrix, string filepath, float xdpi, float ydpi, const string& description)
 {
@@ -64,6 +65,8 @@ void writeTiff(const w11Matrix<w11T8Bits>& matrix, string filepath, float xdpi, 
 	TIFFClose(tfile);
 	_TIFFfree(buf);
 }
+
+#endif
 
 
 

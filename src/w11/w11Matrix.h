@@ -222,8 +222,9 @@ private:
 	
 };
 
+#ifdef _W11_SUPPORT_TIFF_
 void writeTiff(const w11Matrix<w11T8Bits>& matrix, std::string filepath, float xdpi, float ydpi, const std::string& description);
-
+#endif
 
 
 #endif
