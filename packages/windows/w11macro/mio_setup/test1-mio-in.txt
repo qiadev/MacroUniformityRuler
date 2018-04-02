@@ -1,0 +1,31 @@
+UUID:2009-09-14
+IMAGE:images/t1.tif
+TIME:2009.09.14.12.35.10
+EXMID:simulation
+STATUS:0
+INPUTS:20
+SS::Directory::C:\w11macro
+DS::Mean::50.000000
+DS::Amplitude::3.000000
+DS::Noise::10.000000
+SS::Label::Test of MIO
+SA::CIELabFiles::1
+0930-1.it8
+FA::VerticalBandsFrequencies::2::0.5 0.05		EOA
+FA::VerticalBandsAmplitudes::2::0.5 0.05		EOA
+FA::HorizontalBandsFrequencies::0::				EOA
+FA::HorizontalBandsAmplitudes::0::				EOA
+FA::MottleLowFrequencies::0::					EOA
+FA::MottleHighFrequencies::0::					EOA
+FA::MottleAmplitudes::0::						EOA
+FA::VerticalIsolatedStreakLocations::0::		EOA
+FA::VerticalIsolatedStreakWidths::0::			EOA
+FA::VerticalIsolatedStreakAmplitudes::0::		EOA
+DS::VerticalRandomStreakAmplitude::0.000000
+DS::VerticalRandomStreakMinimumPeriod::0.000000
+DS::VerticalRandomStreakMaximumPeriod::0.000000
+SS::Filename::w11_simulation.tif
+OUTPUTS:2
+00::NMF::<<unknown_type>>
+00::VNHF::<<unknown_type>>
+END

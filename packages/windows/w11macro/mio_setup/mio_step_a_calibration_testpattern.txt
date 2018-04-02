@@ -1,0 +1,9 @@
+UUID:2010-01-07
+IMAGE:not_used
+TIME:2010.01.07.01.01.01
+EXMID:tp_calibration
+STATUS:0
+INPUTS:1
+SS::Directory::C:\w11macro
+OUTPUTS:0
+END

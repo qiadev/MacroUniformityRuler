@@ -1,0 +1,13 @@
+UUID:2010-01-07
+IMAGE:only_used_for_image_simulations
+TIME:2010.01.07.01.01.01
+EXMID:scale
+STATUS:0
+INPUTS:5
+SS::Directory::C:\w11macro
+DS::Mean::20.0
+DS::Amplitude::0.000
+DS::Noise::0.0
+SS::Label::For Tutorial
+OUTPUTS:0
+END
