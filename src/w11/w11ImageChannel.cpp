@@ -34,8 +34,11 @@ void w11ImageChannel::setScale(const double dy, const double dx)
 	fdx= dx;
 }
 
-void w11ImageChannel::writeFile(std::string filepath) const
+/// Write image to file using internal format. Pads the filepath by the "iw11" extension.
+/// - returns : Path to the written file.
+std::string  w11ImageChannel::writeFile(std::string filepath) const
 {
+    filepath = filepath + ".iw11";
 	ofstream outfile(filepath.c_str());
 
     if (!outfile) {
@@ -55,7 +58,47 @@ void w11ImageChannel::writeFile(std::string filepath) const
         cerr << "Failed to write to file :" + filepath << endl;
         exit(-2);
     }
+    return filepath;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

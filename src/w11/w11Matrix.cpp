@@ -15,8 +15,12 @@ using namespace std;
 #ifdef _W11_SUPPORT_TIFF_
 #include "tiffio.h"
 
-void writeTiff(const w11Matrix<w11T8Bits>& matrix, string filepath, float xdpi, float ydpi, const string& description)
+
+/// Write image to TIFF file. Pads the filepath by the "tif" extension.
+/// - returns : Path to the written file.
+std::string writeTiff(const w11Matrix<w11T8Bits>& matrix, string filepath, float xdpi, float ydpi, const string& description)
 {
+    filepath = filepath + ".tif";
 	cout << "Writing TIFF image file" << endl;
 	TIFF* tfile= TIFFOpen(filepath.c_str(), "w");
 	if (!tfile) {
@@ -64,6 +68,8 @@ void writeTiff(const w11Matrix<w11T8Bits>& matrix, string filepath, float xdpi, 
 	}
 	TIFFClose(tfile);
 	_TIFFfree(buf);
+
+    return filepath;
 }
 
 #endif

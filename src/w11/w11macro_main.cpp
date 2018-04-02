@@ -161,7 +161,7 @@ void scaleOp(float ymean, float amplitude, float noise, const string& label)
 	ostringstream ost;
 	ost << "w11macro_scale_a=" << static_cast<long>(10000*amplitude) << "_n=" << static_cast<long>(100*noise);
 	string scalePath= w11Utility::instance().generatedScaleDirectory();
-	scalePath= w11Utility::appendPathSegment(scalePath, ost.str() + ".tif");
+	scalePath= w11Utility::appendPathSegment(scalePath, ost.str());
 	
 	//
 	sample.compose(ymean, amplitude, ost.str());
@@ -201,14 +201,15 @@ void scaleOp(float ymean, float amplitude, float noise, const string& label)
 		}
 	}
 
+    string fullpath;
 #ifdef _W11_TIFF_SUPPORT_
 	float xdpi = (float) (25.4 / i8->dx());
 	float ydpi = (float) (25.4 / i8->dy());
-	writeTiff(i8->matrix(), scalePath, xdpi, ydpi, string("W1.1 Macro-uniformity") + label);
+	fullpath = writeTiff(i8->matrix(), scalePath, xdpi, ydpi, string("W1.1 Macro-uniformity") + label);
 #else
-    i8->writeFile(scalePath);
+    fullpath = i8->writeBMP(scalePath);
 #endif
-	cout << "Wrote image <" << scalePath + ">" << endl;
+	cout << "Wrote image <" << fullpath + ">" << endl;
 	cout << "Dimensions: " << i8->nx() << " by " << i8->ny() << endl;
 }
 
@@ -302,15 +303,16 @@ void calibrationTestPatternOp(void)
 	}
 	string calibrationPath= w11Utility::instance().generatedCalibrationDirectory();
 	calibrationPath= w11Utility::appendPathSegment(calibrationPath, ost.str());
-	
+
+    string fullpath;
 #ifdef _W11_TIFF_SUPPORT_
     float xdpi = (float)(25.4 / i8->dx());
     float ydpi = (float)(25.4 / i8->dy());
-	writeTiff(i8->matrix(), calibrationPath + ".tif", xdpi, ydpi, string("W1.1 Macro-uniformity") + __W11_MACRO_VERSION__);
+	fullpath = writeTiff(i8->matrix(), calibrationPath, xdpi, ydpi, string("W1.1 Macro-uniformity") + __W11_MACRO_VERSION__);
 #else
-    i8->writeFile(calibrationPath);
+    fullpath = i8->writeBMP(calibrationPath);
 #endif
-    cout << "Wrote image <" << calibrationPath + ">" << endl;
+    cout << "Wrote image <" << fullpath + ">" << endl;
 
 }
 
@@ -397,7 +399,7 @@ void simulationOp(string filename, string label, float mean, float noise,
 	
 	// construct file name:
 	string scalePath= w11Utility::instance().generatedScaleDirectory();
-	scalePath= w11Utility::appendPathSegment(scalePath, filename);
+    scalePath= w11Utility::appendPathSegment(scalePath, filename);      // FIXME: filename may contain .tif extension, which should be stripped.
 	
 	// TRC calibration
 	string calibrationPath= w11Utility::instance().generatedCalibrationDirectory();
@@ -430,14 +432,15 @@ void simulationOp(string filename, string label, float mean, float noise,
 		}
 	}
 	
+    string fullpath;
 #ifdef _W11_TIFF_SUPPORT_
 	float xdpi = (float)(25.4 / i8->dx());
 	float ydpi = (float)(25.4 / i8->dy());
-	writeTiff(i8->matrix(), scalePath, xdpi, ydpi, string("W1.1 Macro-uniformity") + label);
+	fullpath = writeTiff(i8->matrix(), scalePath, xdpi, ydpi, string("W1.1 Macro-uniformity") + label);
 #else
-    i8->writeFile(scalePath);
+    fullpath = i8->writeBMP(scalePath);
 #endif
-    cout << "Generated simulated image: " << scalePath << endl;
+    cout << "Generated simulated image: " << fullpath << endl;
     cout << "Dimensions: " << i8->nx() << " by " << i8->ny() << endl;
 
 }

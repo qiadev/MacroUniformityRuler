@@ -35,16 +35,16 @@ public:
 	void setScale(const double dx, const double dy);
 	
 	// IO:
-	void writeFile(std::string filepath) const;
+    std::string  writeFile(std::string filepath) const;
 	virtual void dumpData(std::ostream& ost) const = 0;
-	
 	
 private:
 	std::string fName;
 	std::string fEncodedDescription;	// e.g. XML
 	double fdx;
 	double fdy;
-	
+
+
 };
 
 #endif

@@ -202,14 +202,14 @@ public:
 		}
 	};
 	
-	void dumpData(std::ostream& ost) const
-	{
-		// v[0] is pointer to the entire data chunk
-		size_t bsize= fnx * fny * sizeof(T);
-		ost.write((char*)v[0], bsize);
-	};
-	
-	
+    void dumpData(std::ostream& ost) const
+    {
+        // v[0] is pointer to the entire data chunk
+        size_t bsize= fnx * fny * sizeof(T);
+        ost.write((char*)v[0], bsize);
+    };
+
+
 // MARK: -  Private methods
 private:
 	void freedata(void) {
@@ -223,7 +223,7 @@ private:
 };
 
 #ifdef _W11_SUPPORT_TIFF_
-void writeTiff(const w11Matrix<w11T8Bits>& matrix, std::string filepath, float xdpi, float ydpi, const std::string& description);
+std::string writeTiff(const w11Matrix<w11T8Bits>& matrix, std::string filepath, float xdpi, float ydpi, const std::string& description);
 #endif
 
 
