@@ -87,18 +87,19 @@ public:
     std::string writeBMP(std::string filepath) const
     {
         filepath = filepath + ".bmp";
-        writeBMPFile(filepath);
+        writeBMPFile(filepath, false);
         return filepath;
     }
 
 private:
 
     // MARK: - BMP support
-    // Based on <https://stackoverflow.com/a/32027388/668253>
+    // Based on <https://stackoverflow.com/a/32027388/668253>.
+    // See also <https://web.archive.org/web/20080912171714/http://www.fortunecity.com/skyscraper/windows/364/bmpffrmt.html>
 
     /// Write image to BMP file (image must be 8 bit). Pads the filepath by the bmp extension.
     /// - returns : Path to the written file.
-    void writeBMPFile(std::string filepath) const
+    void writeBMPFile(std::string filepath, bool grayScale = false) const   // FIXME: grayscale not working!
     {
         unsigned int headers[13];
         FILE * outfile;
@@ -107,16 +108,19 @@ private:
         int x; int y; int n;
         int red, green, blue;
 
+        int samplesPerPixel;    // RGB:3 gray:1
+        samplesPerPixel = grayScale ? 1 : 3;
+
         int WIDTH = (int) nx();
         int HEIGHT = (int) ny();
 
-        extrabytes = 4 - ((WIDTH * 3) % 4);                 // How many bytes of padding to add to each
+        extrabytes = 4 - ((WIDTH * samplesPerPixel) % 4);                 // How many bytes of padding to add to each
         // horizontal line - the size of which must
         // be a multiple of 4 bytes.
         if (extrabytes == 4)
             extrabytes = 0;
 
-        paddedsize = ((WIDTH * 3) + extrabytes) * HEIGHT;
+        paddedsize = ((WIDTH * samplesPerPixel) + extrabytes) * HEIGHT;
 
         // Headers...
         // Note that the "BM" identifier in bytes 0 and 1 is NOT included in these "headers".
@@ -162,7 +166,7 @@ private:
 
         fprintf(outfile, "%c", 1);
         fprintf(outfile, "%c", 0);
-        fprintf(outfile, "%c", 24);
+        fprintf(outfile, "%c", grayScale ? 8 : 24);
         fprintf(outfile, "%c", 0);
 
         for (n = 7; n <= 12; n++)
@@ -185,10 +189,13 @@ private:
                 green = blue = red;
 
                 // Also, it's written in (b,g,r) format...
-
-                fprintf(outfile, "%c", blue);
-                fprintf(outfile, "%c", green);
-                fprintf(outfile, "%c", red);
+                if (grayScale) {
+                    fprintf(outfile, "%c", red);
+                } else {
+                    fprintf(outfile, "%c", blue);
+                    fprintf(outfile, "%c", green);
+                    fprintf(outfile, "%c", red);
+                }
             }
             if (extrabytes)      // See above - BMP lines must be of lengths divisible by 4.
             {
