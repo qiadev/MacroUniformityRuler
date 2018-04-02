@@ -114,11 +114,8 @@ private:
         int WIDTH = (int) nx();
         int HEIGHT = (int) ny();
 
-        extrabytes = 4 - ((WIDTH * samplesPerPixel) % 4);                 // How many bytes of padding to add to each
-        // horizontal line - the size of which must
-        // be a multiple of 4 bytes.
-        if (extrabytes == 4)
-            extrabytes = 0;
+        extrabytes = (4 - ((WIDTH * samplesPerPixel) % 4)) % 4;  // DRR: One more %4, to avoid padding with 4.               // How many bytes of padding to add to each
+        // horizontal line - the size of which must be a multiple of 4 bytes.
 
         paddedsize = ((WIDTH * samplesPerPixel) + extrabytes) * HEIGHT;
 
