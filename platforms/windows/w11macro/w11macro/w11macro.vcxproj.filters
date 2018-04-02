@@ -159,7 +159,4 @@
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\external\libtiff-3-8-2\lib\libtiff.lib" />
-  </ItemGroup>
 </Project>
